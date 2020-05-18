@@ -14,7 +14,7 @@ const Discord = require('discord.js');
 const Youtube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
-const youtube = new Youtube('AIzaSyCQsrwLAdT8GBoWoCuAXdHqLthdqtLYLx0');
+const youtube = new Youtube('YOUR_GOOGLE_TOKEN');
 const client = new Discord.Client();
 const active = new Map();  
 
