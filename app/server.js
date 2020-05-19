@@ -7,14 +7,14 @@ app.get("/", (request, response) => {
 });
 app.listen(process.env.PORT);
 setInterval(() => {
-  http.get(`http://khaue-musicas.glitch.me/`);
+  http.get(`http://higor.glitch.me/`);
 }, 280000);
 
 const Discord = require('discord.js');
 const Youtube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
-const youtube = new Youtube('YOUR_GOOGLE_TOKEN');
+const youtube = new Youtube('YOUR_YOUTUBE_TOKEN');
 const client = new Discord.Client();
 const active = new Map();  
 
