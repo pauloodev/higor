@@ -449,6 +449,10 @@ function tocarMusica(msg){
 client.on('guildMemberAdd', member => {
     const role = member.guild.roles.find(role => role.name == '👤 MEMBRO');
    member.addRole(role);
+  })
+client.on('guildMemberAdd', member => {
+    const role = member.guild.roles.find(role => role.name == 'Pintinho');
+   member.addRole(role);
   })  
 
 client.login(process.env.TOKEN);
