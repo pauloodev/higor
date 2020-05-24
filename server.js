@@ -38,12 +38,52 @@ function changing_status() {
     client.user.setActivity(random)
 }
 
+function radio() {
+  const streamOptions = {seek: 0, volume: 1};
+    let RaLofi = client.channels.get('709330622493229083')
+    if(RaLofi !== null) {
+        console.log('[RÁDIO] - Voice Channel has been found, and is playing.');
+        RaLofi.join()
+        .then(connection => {
+            const stream = connection.playStream('https://stream.radiojovempop.com/top40/stream_hd');
+            const DJ = connection.playStream(stream, streamOptions);
+            DJ.on('end', end => {
+            RaLofi.join()
+            .then(connection => {
+              const stream = connection.playStream('https://stream.radiojovempop.com/top40/stream_hd');
+              const DJ = connection.playStream(stream, streamOptions);              
+        })          
+    }) 
+  })
+}   
+}
 
 client.on('ready', () => {
   console.log(`[BOT] - Login token was a success!`)
   console.log(`[BOT OK] - Bot is ready to execute commands.`)
   console.log(`[BOT INFO] - The bot is on ${client.guilds.size} servers, with a total of ${client.users.size} members.`)
   setInterval(changing_status, 10000);
+  setInterval(radio, 3600000);
+  
+  const streamOptions = {seek: 0, volume: 1};
+  
+    let RaLofi = client.channels.get('709330622493229083')
+    if(RaLofi !== null) {
+        console.log('[RÁDIO] - Voice Channel has been found, and is playing.');
+        RaLofi.join()
+        .then(connection => {
+            const stream = connection.playStream('https://stream.radiojovempop.com/top40/stream_hd');
+            const DJ = connection.playStream(stream, streamOptions);
+            DJ.on('end', end => {
+            RaLofi.join()
+            .then(connection => {
+              const stream = connection.playStream('https://stream.radiojovempop.com/top40/stream_hd');
+              const DJ = connection.playStream(stream, streamOptions);              
+        })          
+    }) 
+  })
+}  
+  
 });
 
 client.on("message", async message => {
@@ -123,58 +163,58 @@ client.on('message', async msg => {
                         color: 0x045FB4,
                         description: '<a:alerta:711743753093906512> | Escolha uma __música de 1 á 5__, clicando nas reações!'
                     }}).then( async (embedMessage) => {
-                        await embedMessage.react(':1_numero:711743465028845658');
-                        await embedMessage.react(':2_numero:711743464685043772');
-                        await embedMessage.react(':3_numero:711743464894890084');
-                        await embedMessage.react(':4_numero:711743465075113992');
-                        await embedMessage.react(':5_numero:711743464882044978');
+                        await embedMessage.react(':1_blue:712736700555591690');
+                        await embedMessage.react(':2_blue:712736699767193611');
+                        await embedMessage.react(':3_blue:712736700111126539');
+                        await embedMessage.react(':4_blue:712736699809005631');
+                        await embedMessage.react(':5_blue:712736700107063399');
 
                         const filter = (reaction, user) => {
-                            return ['1_numero', '2_numero', '3_numero', '4_numero', '5_numero'].includes(reaction.emoji.name)
+                            return ['1_blue', '2_blue', '3_blue', '4_blue', '5_blue'].includes(reaction.emoji.name)
                                 && user.id === msg.author.id;
                         }
 
                         let collector = embedMessage.createReactionCollector(filter, {time: 20000});
                         collector.on('collect', async (reaction, rectionCollector) => {
-                            if (reaction.emoji.name === '1_numero'){
+                            if (reaction.emoji.name === '1_blue'){
                                 let tocando = new Discord.RichEmbed()
                                   .setDescription('<:musicas:711153744078700545> | Estou tocando ``' + `${videoEncontrado.title}` + '``.')
                                   .setColor('#045FB4')
                                 msg.channel.send(tocando)
                                 videoEncontrado = await youtube.getVideoByID(videosPesquisados[0].id);
-                                servidores[msg.guild.id].push(`https://www.youtube.com/watch?v=${videoEncontrado.id}`);
+                                servidores[msg.guild.id].push(`\nhttps://www.youtube.com/watch?v=${videoEncontrado.id}`);
                             }
-                            else if (reaction.emoji.name === '2_numero'){
+                            else if (reaction.emoji.name === '2_blue'){
                                 let tocando = new Discord.RichEmbed()
                                   .setDescription('<:musicas:711153744078700545> | Estou tocando ``' + `${videoEncontrado.title}` + '``.')
                                   .setColor('#045FB4')
                                 msg.channel.send(tocando)
                                 videoEncontrado = await youtube.getVideoByID(videosPesquisados[1].id);
-                                servidores[msg.guild.id].push(`https://www.youtube.com/watch?v=${videoEncontrado.id}`);
+                                servidores[msg.guild.id].push(`\nhttps://www.youtube.com/watch?v=${videoEncontrado.id}`);
                             }
-                            else if (reaction.emoji.name === '3_numero'){
+                            else if (reaction.emoji.name === '3_blue'){
                                 let tocando = new Discord.RichEmbed()
                                   .setDescription('<:musicas:711153744078700545> | Estou tocando ``' + `${videoEncontrado.title}` + '``.')
                                   .setColor('#045FB4')
                                 msg.channel.send(tocando)
                                 videoEncontrado = await youtube.getVideoByID(videosPesquisados[2].id);
-                                servidores[msg.guild.id].push(`https://www.youtube.com/watch?v=${videoEncontrado.id}`);
+                                servidores[msg.guild.id].push(`\nhttps://www.youtube.com/watch?v=${videoEncontrado.id}`);
                             }
-                            else if (reaction.emoji.name === '4_numero'){
+                            else if (reaction.emoji.name === '4_blue'){
                                 let tocando = new Discord.RichEmbed()
                                   .setDescription('<:musicas:711153744078700545> | Estou tocando ``' + `${videoEncontrado.title}` + '``.')
                                   .setColor('#045FB4')
                                 msg.channel.send(tocando)
                                 videoEncontrado = await youtube.getVideoByID(videosPesquisados[3].id);
-                                servidores[msg.guild.id].push(`https://www.youtube.com/watch?v=${videoEncontrado.id}`);
+                                servidores[msg.guild.id].push(`\nhttps://www.youtube.com/watch?v=${videoEncontrado.id}`);
                             }
-                            else if (reaction.emoji.name === '5_numero'){
+                            else if (reaction.emoji.name === '5_blue'){
                                 let tocando = new Discord.RichEmbed()
                                   .setDescription('<:musicas:711153744078700545> | Estou tocando ``' + `${videoEncontrado.title}` + '``.')
                                   .setColor('#045FB4')
                                 msg.channel.send(tocando)
                                 videoEncontrado = await youtube.getVideoByID(videosPesquisados[4].id);
-                                servidores[msg.guild.id].push(`https://www.youtube.com/watch?v=${videoEncontrado.id}`);
+                                servidores[msg.guild.id].push(`\nhttps://www.youtube.com/watch?v=${videoEncontrado.id}`);
                             }
                             if (servidores[msg.guild.id].length === 1) {
                                 tocarMusica(msg);
@@ -327,7 +367,7 @@ client.on('message', async msg => {
         .setDescription("Olá " + `${usuario}` +  ", você esta na central de ajuda. E irei lhe mostrar algumas informações sobre mim...")
         .addField("<:statusdobot_blue:711786626950627349> Status do Bot:", '\n<:servidores_blue:711788829476126780> Servidores: ' + `${client.guilds.size.toLocaleString()}` + '\n<:members_blue:711788829463281704> Membros: ' + `${client.users.size.toLocaleString()}` +  '\n<:sinal_blue:711788829442441227> Ping atual: ' + `${Math.round(client.ping)}ms`)    
         .addField("<:pasta_blue:711785954456764538> **Pasta de Comandos**", 'Essa é a minha Pasta Principal de Comandos, aqui você pode acessar cada comando disponível.')
-        .addField("<:musicas_blue:711785954762948668> Músicas (7):", '``join``, ``play``, ``pause``, ``resume``, ``skip``, ``end``, ``leave``.')
+        .addField("<:musicas_blue:711785954762948668> Músicas (8):", '``join``, ``play``, ``pause``, ``resume``, ``skip``, ``fila``,``end``, ``leave``.')
         .addField("Outros:", '<:vote_blue:711785954825863231> Vote em mim:' + `[ Clique Aqui](http://votar.khaue.gq)` + '\n<:convite_blue:711785954691776594> Me adiciona em seu Servidor?' + `[ Clique Aqui](https://discord.com/oauth2/authorize?client_id=711724435349962803&scope=bot&permissions=36990784)`)
         .setThumbnail(client.user.avatarURL)
         .setColor('#045FB4')
@@ -342,13 +382,26 @@ client.on('message', async msg => {
         .setDescription("Olá " + `${usuario}` +  ", você esta na central de ajuda. E irei lhe mostrar algumas informações sobre mim...")
         .addField("<:statusdobot_blue:711786626950627349> Status do Bot:", '\n<:servidores_blue:711788829476126780> Servidores: ' + `${client.guilds.size.toLocaleString()}` + '\n<:members_blue:711788829463281704> Membros: ' + `${client.users.size.toLocaleString()}` +  '\n<:sinal_blue:711788829442441227> Ping atual: ' + `${Math.round(client.ping)}ms`)    
         .addField("<:pasta_blue:711785954456764538> **Pasta de Comandos**", 'Essa é a minha Pasta Principal de Comandos, aqui você pode acessar cada comando disponível.')
-        .addField("<:musicas_blue:711785954762948668> Músicas (7):", '``join``, ``play``, ``pause``, ``resume``, ``skip``, ``end``, ``leave``.')
+        .addField("<:musicas_blue:711785954762948668> Músicas (8):", '``join``, ``play``, ``pause``, ``resume``, ``skip``, ``fila``,``end``, ``leave``.')
         .addField("Outros:", '<:vote_blue:711785954825863231> Vote em mim:' + `[ Clique Aqui](http://votar.khaue.gq)` + '\n<:convite_blue:711785954691776594> Me adiciona em seu Servidor?' + `[ Clique Aqui](https://discord.com/oauth2/authorize?client_id=711724435349962803&scope=bot&permissions=36990784)`)
         .setThumbnail(client.user.avatarURL)
         .setColor('#045FB4')
       msg.channel.send(embed)
 
-    }  
+    }
+
+    if (msg.content === `${prefixoComando}teste`){
+      let usuario = msg.member
+      let embed = new Discord.RichEmbed()
+        .setTitle(`💼 Saldo de ${usuario}`)
+        .addField("💸 Saldo em mãos", '```css\nR$50```', true)  
+        .addField("💰 Saldo bancário", '```css\nR$84```', true)
+        .addField("🌞 Saldo de BitCoin",'```css\nR$1.000```', true)
+        .setThumbnail(client.user.avatarURL)
+        .setColor('#045FB4')
+      msg.channel.send(embed)
+
+    }   
 
     if (msg.content === `${prefixoComando}ping`){
       const { RichEmbed } = require("discord.js");
@@ -360,7 +413,26 @@ client.on('message', async msg => {
           .setColor('#045FB4')
         msg.channel.send(embed)
 
-    }  
+    }
+    if (msg.content === `${prefixoComando}fila`){
+      const { RichEmbed } = require("discord.js");
+        msg.delete(5000)
+      
+      if (servidores[msg.guild.id].length > 1){
+        let embed = new RichEmbed()
+          .setTitle(`<:musicas_blue:711785954762948668> Músicas em fila:`)
+          .setDescription(`${servidores[msg.guild.id]}`)
+          .setColor('#045FB4')
+        msg.channel.send(embed)
+      }
+      else {
+        let embed = new Discord.RichEmbed()
+          .setDescription('<:negado:708273670409289740> | Não existe nenhuma música na fila para reproduzir.')
+          .setColor('#045FB4')
+        msg.channel.send(embed)   
+      }      
+
+    }   
 
 });
 
@@ -373,5 +445,10 @@ function tocarMusica(msg){
             }
         });
 }
+
+client.on('guildMemberAdd', member => {
+    const role = member.guild.roles.find(role => role.name == '👤 MEMBRO');
+   member.addRole(role);
+  })  
 
 client.login(process.env.TOKEN);
